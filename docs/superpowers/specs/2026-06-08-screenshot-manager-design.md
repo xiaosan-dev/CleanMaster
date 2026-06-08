@@ -633,14 +633,51 @@ class ErrorHandler {
 └──────────────────────────────────┘
 ```
 
+### 广告 SDK 与聚合
+
+使用 **AdMob + 穿山甲（CSJ）** 双 SDK，通过 AdMob Mediation 聚合管理。
+
+```
+┌─────────────────────────────────────┐
+│           AdMob Mediation           │
+│  ┌─────────────┐ ┌───────────────┐  │
+│  │   AdMob     │ │   穿山甲 CSJ   │  │
+│  │  (海外流量)  │ │  (国内流量)    │  │
+│  └─────────────┘ └───────────────┘  │
+│        ↓ 竞价/瀑布流 ↓               │
+│        选择最优广告源填充             │
+└─────────────────────────────────────┘
+```
+
 ### 广告管理接口
 
 ```kotlin
-class AdManager {
+class AdManager(
+    private val admobProvider: AdMobProvider,
+    private val csjProvider: CSJProvider,
+    private val mediationConfig: MediationConfig
+) {
+    // 启动广告（优先 AdMob，穿山甲作为备用）
     fun showSplashAd(activity: Activity, onDismissed: () -> Unit)
+
+    // Banner 广告
     fun loadBannerAd(adView: AdView)
+
+    // 插屏广告（预加载，聚合竞价）
     fun preloadInterstitial()
     fun showInterstitialIfReady(activity: Activity, onDismissed: () -> Unit)
+}
+
+// 聚合配置
+data class MediationConfig(
+    val adMobAppId: String,
+    val csjAppId: String,
+    val waterfallOrder: List<AdSource>,  // 瀑布流顺序
+    val biddingEnabled: Boolean = true   // 是否启用竞价
+)
+
+enum class AdSource {
+    ADMOB, CSJ
 }
 
 enum class AdTrigger {
@@ -659,7 +696,77 @@ enum class AdTrigger {
 
 ---
 
-## 12. 测试策略
+## 12. 多语言支持
+
+支持 **中文（简体）** 和 **英文**，跟随系统语言自动切换，用户也可在设置中手动选择。
+
+### 资源结构
+
+```
+app/src/main/res/
+├── values/
+│   └── strings.xml          # 默认（英文）
+├── values-zh/
+│   └── strings.xml          # 中文（简体）
+```
+
+### 实现方式
+
+```kotlin
+// 使用 Android 原生资源系统 + Compose
+// strings.xml 中定义所有文案
+
+// 示例 strings.xml (英文)
+<string name="app_name">ScreenshotManager</string>
+<string name="scan_button">Scan</string>
+<string name="clean_button">Clean</string>
+<string name="storage_used">Used: %1$s</string>
+<string name="storage_available">Available: %1$s</string>
+<string name="duplicates_found">Found %1$d duplicate groups</string>
+<string name="trash_full">Trash is full, please clean up</string>
+
+// 示例 strings.xml (中文)
+<string name="app_name">截图管家</string>
+<string name="scan_button">扫描</string>
+<string name="clean_button">清理</string>
+<string name="storage_used">已用：%1$s</string>
+<string name="storage_available">可用：%1$s</string>
+<string name="duplicates_found">发现 %1$d 组重复文件</string>
+<string name="trash_full">回收站已满，请清理后重试</string>
+```
+
+### 语言切换
+
+```kotlin
+class LanguageManager(private val context: Context) {
+    // 获取当前语言
+    fun getCurrentLanguage(): Locale
+
+    // 设置语言（保存到 SharedPreferences）
+    fun setLanguage(locale: Locale)
+
+    // 应用语言（Activity 重建）
+    fun applyLanguage(activity: Activity)
+}
+
+// 设置页提供语言选择
+enum class Language(val displayName: String, val locale: Locale) {
+    SYSTEM("跟随系统", Locale.getDefault()),
+    ENGLISH("English", Locale.ENGLISH),
+    CHINESE("中文", Locale.CHINESE)
+}
+```
+
+### 多语言覆盖范围
+
+- 所有 UI 文案（按钮、标题、提示、错误信息）
+- 通知文本（如有）
+- 广告相关提示文案
+- 设置项描述
+
+---
+
+## 13. 测试策略
 
 使用 JUnit + Mockk 进行单元测试，覆盖核心逻辑。
 
