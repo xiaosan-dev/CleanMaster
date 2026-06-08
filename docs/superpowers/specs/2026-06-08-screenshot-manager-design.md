@@ -5,7 +5,7 @@
 
 ## 1. 项目概述
 
-ScreenshotManager 是一款 Android 存储清理 + 重复文件分析应用，面向普通用户和进阶用户。默认提供简单模式一键清理，同时支持高级模式查看详细分析结果。
+清理管家（CleanMaster）是一款 Android 存储清理 + 重复文件分析应用，面向普通用户和进阶用户。默认提供简单模式一键清理，同时支持高级模式查看详细分析结果。
 
 ### 核心功能
 
@@ -717,7 +717,7 @@ app/src/main/res/
 // strings.xml 中定义所有文案
 
 // 示例 strings.xml (英文)
-<string name="app_name">ScreenshotManager</string>
+<string name="app_name">CleanMaster</string>
 <string name="scan_button">Scan</string>
 <string name="clean_button">Clean</string>
 <string name="storage_used">Used: %1$s</string>
