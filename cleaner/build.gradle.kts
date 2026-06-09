@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.cleanmaster.cleaner"
+    namespace = "com.xiaosan.cleanmaster.cleaner"
     compileSdk = 34
 
     defaultConfig {

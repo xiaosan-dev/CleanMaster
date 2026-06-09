@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.cleanmaster"
+    namespace = "com.xiaosan.cleanmaster"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.cleanmaster"
+        applicationId = "com.xiaosan.cleanmaster"
         minSdk = 26
         targetSdk = 34
         versionCode = 1

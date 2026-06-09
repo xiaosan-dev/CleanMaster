@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.cleanmaster.scanner"
+    namespace = "com.xiaosan.cleanmaster.scanner"
     compileSdk = 34
 
     defaultConfig {

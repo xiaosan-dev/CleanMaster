@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.cleanmaster.duplicates"
+    namespace = "com.xiaosan.cleanmaster.duplicates"
     compileSdk = 34
 
     defaultConfig {

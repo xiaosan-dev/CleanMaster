@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.cleanmaster.core"
+    namespace = "com.xiaosan.cleanmaster.core"
     compileSdk = 34
 
     defaultConfig {
