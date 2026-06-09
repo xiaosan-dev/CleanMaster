@@ -25,6 +25,7 @@ coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutin
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 admob = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "admob" }
+csj-sdk = { group = "com.pangle.cn", name = "ads-sdk-pro", version.ref = "csj" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
