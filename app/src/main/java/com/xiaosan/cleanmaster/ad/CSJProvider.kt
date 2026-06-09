@@ -1,3 +1,7 @@
+// TODO: 启用穿山甲（CSJ）广告功能
+// 取消注释以下代码并添加穿山甲 SDK 依赖后启用
+
+/*
 package com.xiaosan.cleanmaster.ad
 
 import android.app.Activity
@@ -24,3 +28,4 @@ class CSJProvider(private val context: Context) {
 
     fun isInterstitialReady(): Boolean = false
 }
+*/

@@ -1,3 +1,7 @@
+// TODO: 启用广告功能（AdMob + 穿山甲聚合）
+// 取消注释以下代码并添加广告 SDK 依赖后启用
+
+/*
 package com.xiaosan.cleanmaster.ad
 
 import android.app.Activity
@@ -53,3 +57,4 @@ class AdManager(
         admobProvider.showInterstitial(activity, onDismissed)
     }
 }
+*/

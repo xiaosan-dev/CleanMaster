@@ -1,3 +1,7 @@
+// TODO: 启用 AdMob 广告功能
+// 取消注释以下代码并添加 AdMob SDK 依赖后启用
+
+/*
 package com.xiaosan.cleanmaster.ad
 
 import android.app.Activity
@@ -54,3 +58,4 @@ class AdMobProvider(private val context: Context) {
 
     fun isInterstitialReady(): Boolean = interstitialAd != null
 }
+*/

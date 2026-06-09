@@ -61,7 +61,8 @@ dependencies {
 
     implementation(libs.coroutines.android)
 
-    implementation(libs.admob)
+    // TODO: 启用广告 SDK（AdMob + 穿山甲）
+    // implementation(libs.admob)
 
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
