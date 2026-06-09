@@ -19,6 +19,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.cleanmaster.R
 import com.cleanmaster.ui.home.HomeScreen
+import com.cleanmaster.ui.settings.SettingsScreen
 
 sealed class Screen(val route: String, val titleRes: Int, val icon: ImageVector) {
     object Home : Screen("home", R.string.nav_home, Icons.Default.Home)
@@ -59,7 +60,7 @@ fun AppNavigation() {
             composable(Screen.Home.route) { HomeScreen() }
             composable(Screen.Screenshots.route) { /* ScreenshotScreen placeholder */ }
             composable(Screen.Trash.route) { /* TrashScreen placeholder */ }
-            composable(Screen.Settings.route) { /* SettingsScreen placeholder */ }
+            composable(Screen.Settings.route) { SettingsScreen() }
         }
     }
 }
