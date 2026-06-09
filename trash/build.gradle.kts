@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.xiaosan.cleanmaster.trash"
-    compileSdk = 34
+    compileSdk = 37
 
     defaultConfig {
         minSdk = 26
