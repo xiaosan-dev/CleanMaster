@@ -61,7 +61,6 @@ dependencies {
     implementation(libs.coroutines.android)
 
     implementation(libs.admob)
-    implementation(libs.csj.sdk)
 
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
