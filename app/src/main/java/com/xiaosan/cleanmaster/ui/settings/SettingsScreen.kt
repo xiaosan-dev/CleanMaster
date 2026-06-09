@@ -32,12 +32,7 @@ fun SettingsScreen(viewModel: SettingsViewModel = hiltViewModel()) {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        SettingCard(title = stringResource(R.string.language_setting)) {
-            LanguageSelector(
-                selected = uiState.selectedLanguage,
-                onSelect = { viewModel.setLanguage(it) }
-            )
-        }
+        // 语言设置已移除，跟随系统语言自动切换
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -66,22 +61,6 @@ private fun SettingCard(title: String, content: @Composable ColumnScope.() -> Un
             Text(text = title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
             Spacer(modifier = Modifier.height(12.dp))
             content()
-        }
-    }
-}
-
-@Composable
-private fun LanguageSelector(selected: AppLanguage, onSelect: (AppLanguage) -> Unit) {
-    Column {
-        AppLanguage.entries.forEach { language ->
-            Row(
-                modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                RadioButton(selected = selected == language, onClick = { onSelect(language) })
-                Spacer(modifier = Modifier.width(8.dp))
-                Text(text = language.displayName)
-            }
         }
     }
 }

@@ -11,14 +11,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
-enum class AppLanguage(val displayName: String, val code: String) {
-    SYSTEM("跟随系统", "system"),
-    ENGLISH("English", "en"),
-    CHINESE("中文", "zh")
-}
-
 data class SettingsUiState(
-    val selectedLanguage: AppLanguage = AppLanguage.SYSTEM,
     val trashCapacityMB: Int = 2048,
     val expiredDays: Int = 30
 )
@@ -38,21 +31,12 @@ class SettingsViewModel @Inject constructor(
     }
 
     private fun loadSettings() {
-        val langCode = prefs.getString("language", "system") ?: "system"
-        val language = AppLanguage.entries.find { it.code == langCode } ?: AppLanguage.SYSTEM
-
         _uiState.update {
             it.copy(
-                selectedLanguage = language,
                 trashCapacityMB = prefs.getInt("trash_capacity_mb", 2048),
                 expiredDays = prefs.getInt("expired_days", 30)
             )
         }
-    }
-
-    fun setLanguage(language: AppLanguage) {
-        prefs.edit().putString("language", language.code).apply()
-        _uiState.update { it.copy(selectedLanguage = language) }
     }
 
     fun setTrashCapacity(mb: Int) {
