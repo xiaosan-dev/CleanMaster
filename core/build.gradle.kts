@@ -28,7 +28,7 @@ android {
 }
 
 dependencies {
-    implementation(libs.compose.bom)
+    implementation(platform(libs.compose.bom))
     implementation(libs.compose.ui)
     implementation(libs.compose.material3)
     implementation(libs.coroutines.core)
